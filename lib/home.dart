@@ -16,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final picker = ImagePicker();
   bool loading = false;
+  final server_url = "http://192.168.43.75:5000/";
 
   @override
   Widget build(BuildContext context) {
@@ -230,7 +231,7 @@ class _HomePageState extends State<HomePage> {
     print(_colorCode);
     try {
       Response response = await Dio()
-          .get("http://192.168.43.75:5000/solve?colors=" + _colorCode); //change your local IP
+          .get(server_url + "solve?colors=" + _colorCode); //change your local IP
 
       setState(() {
         loading = false;
@@ -274,7 +275,7 @@ class _HomePageState extends State<HomePage> {
 
     try {
       Response response =
-          await Dio().post("http://192.168.43.75:5000/", data: formData); //change your local IP
+          await Dio().post(server_url, data: formData); //change your local IP
       _dataState.setProcessing(false);
       _dataState.settempRGB(response.data["color_rgb"]);
       _dataState.settempColorCode(response.data["color_name"]);
