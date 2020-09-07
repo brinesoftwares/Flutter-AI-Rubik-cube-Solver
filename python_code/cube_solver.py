@@ -23,7 +23,7 @@ def api_root():
             color = np.array(value)
             distances = np.sqrt(np.sum((colors-color)**2,axis=1))
             index_of_smallest = np.where(distances==np.amin(distances))
-            smallest_distance = colors[index_of_smallest]
+            # smallest_distance = colors[index_of_smallest]
             color_short = color_short + color_name[index_of_smallest[0][0]][0] 
             color_rgb.insert(key,_color_rgb[index_of_smallest[0][0]])
         return jsonify({"status":True,"color_name":color_short,"color_rgb":color_rgb })
